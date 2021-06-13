@@ -20,9 +20,12 @@ async def root(request: Request, my_file: UploadFile = File(...)):
         with open("demo.jpg", "wb") as buffer:
             shutil.copyfileobj(my_file.file, buffer)
         data = predict.predict(my_file)
+        val = data['values']
     else:
         data=''
+        val=''
     return templates.TemplateResponse("result.html",{
                                                     "request": request,
-                                                    "data": data
+                                                    "data": data,
+                                                    "val":val,
                                                     })
