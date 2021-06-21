@@ -22,20 +22,23 @@
         <h2>Image classification</h2>
     </div>
     <div class="ml-auto mr-auto mt-4 col-sm-6">
-        <form action="result" enctype="multipart/form-data" method="POST">
+        <form action="result" enctype="multipart/form-data" onsubmit="return exitFn()" method="POST">
             <div class="form-group">
-                <input type="file" class="form-control" name="my_file" onchange="readURL(this);">
+                <input type="file" id="my_file" class="form-control" name="my_file" onchange="readURL(this);">
             </div>        
             <div class="form-group text-center">
                 <img id="blah" />
             </div>        
             <div class="form-group text-center">
-                <input type="submit" class="btn btn-success" value="Submit">
+                <input id="submit" type="submit" class="btn btn-success" value="Submit">
+                <img id="loading" src="http://localhost:8000/static/loading.svg">
             </div>        
         </form>
     </div>
 </body>
 <script>
+    $("#loading").hide()
+
     function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();
@@ -47,6 +50,15 @@
             };
             reader.readAsDataURL(input.files[0]);
         }
+    }
+
+    function exitFn(){
+        if($("#my_file").val()==''){
+            alert("EMPTYY IMG!!")
+            return false;
+        }
+        $("#submit").hide()
+        $("#loading").show()
     }
 </script>
 </html>

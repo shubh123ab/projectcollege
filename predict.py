@@ -1,4 +1,4 @@
-from keras.models import load_model
+from tensorflow.keras.models import load_model
 import os 
 import numpy as np
 import cv2 
@@ -18,7 +18,7 @@ def predict(img, WIDTH = WIDTH, HEIGHT = HEIGHT):
 	model = load_model(model_path)
 	
 	# data = cv2.imread(os.path.join(cwd , 'test_image.png'), 0 )
-	data = cv2.imread('demo.jpg', 0 )
+	data = cv2.imread('static/demo.jpg', 0 )
 	# data = cv2.imread(str(img.read()), 0 )
     
 	# data = cv2.imdecode((np.fromstring(img.read(), np.uint8)).encode(encoding='UTF-8'), cv2.IMREAD_UNCHANGED)

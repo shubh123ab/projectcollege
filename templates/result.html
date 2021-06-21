@@ -11,7 +11,12 @@
 <body>
     <div class="text-center">
         <h2>Report</h2> 
-        <div>Prediction Probablity</div>       
+        <div>Prediction Probablity</div>   
+        <br>
+        <div>
+            <img width="150" height="200" src="http://localhost:8000/static/demo.jpg">
+        </div>    
+        <br>
         <div>
             <table class="ml-auto mr-auto table table-striped w-50">
                 <tr>
@@ -26,7 +31,12 @@
                 </tr>
             </table>
         </div>
-        <div>Health condition: {{data.health_condition}}</div>
+        <div>Health condition: <b>{{data.health_condition}}</b></div>
+        <br>
+        <br>
+        <div>
+            <a href="http://localhost:8000/"><input type="button" class="btn btn-success" value="Retry ↺"></a>
+        </div>
     </div>    
 </body>
 </html>
