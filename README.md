@@ -20,7 +20,6 @@
 
 ```python3 main.py```
 
-        ```
 8. Visit 
 
     ```http://localhost:8000/```
