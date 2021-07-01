@@ -1,5 +1,15 @@
-**/.env
+# Python3 Venv
+env/
+
+# Python
 __pycache__/
-**/__pycache__
-**/.model.pickle
+
+# Vscode
+.vscode/
+.idea/
+
+# Python Cache
+*.pyc
+
 model.pickle/
+

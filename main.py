@@ -18,6 +18,12 @@ async def root(request: Request):
                                                     "request": request,
                                                     })
 
+@app.get("/about")
+async def root(request: Request):
+    return templates.TemplateResponse("about.html",{
+                                                    "request": request,
+                                                    })
+
 @app.post("/result/")
 async def root(request: Request, my_file: UploadFile = File(...)):
     if request.method == 'POST':
