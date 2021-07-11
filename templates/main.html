@@ -4,64 +4,80 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dekh Lo Isko</title>
+    <title>COVID Prediction</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <style>
+
+        .loader {
+            border: 16px solid #f3f3f3; /* Light grey */
+            border-top: 16px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         @media only screen   
         and (min-device-width : 768px)   
         {
             body{
-                padding: 0px 0px 20px 0px;
-                background-color: #CCCCCC;
+                padding: 0px 0px 20px 0px;                
             }
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Navbar</a>
+    <nav class="navbar navbar-expand-lg" style="background-color: #6C63FE; color: white;">
+        <a class="navbar-brand text-white" href="http://localhost:8000/">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
+                <!--<li class="nav-item active">
+                    <a class="nav-link text-white" href="http://localhost:8000/">Home <span class="sr-only">(current)</span></a>
+                </li>-->
+                <!--<li class="nav-item">
                     <a class="nav-link" href="http://localhost:8000/about">About</a>
-                </li>            
+                </li>-->            
             </ul>
-            <form class="form-inline my-2 my-lg-0">
+            <!--<form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            <button class="btn btn-outline-success my-2 my-sm-0 bg-dark" type="submit">Search</button>
+            </form>-->
         </div>
     </nav>
     <br><br><br><br>    
-    <div class="ml-auto mr-auto mt-4 col-sm-6 p-3" style="background-color: #A4A4A4; border-radius: 4px;">
+    <div class="ml-auto mr-auto mt-4 col-sm-6 p-3" style="background-color: #C2C2C2; border-radius: 4px;">
         <div class="text-center">
             <h2>Image classification</h2>
-            <p>Enter image of your chest X-ray scan to proceed</p>
+            <p>Select image of your chest X-ray scan to proceed</p>
         </div>
         <form action="result" enctype="multipart/form-data" onsubmit="return exitFn()" method="POST">
             <div class="form-group">
                 <input type="file" id="my_file" class="form-control" name="my_file" onchange="readURL(this);" style="background-color: #7F8389;">
-            </div>        
+            </div>     
             <div class="form-group text-center">
                 <img id="blah" />
-            </div>        
+            </div>                       
             <div class="form-group text-center">
-                <input id="submit" type="submit" class="btn" value="Submit" style="background-color: #463B3F; color: white;">
-                <img id="loading" src="http://localhost:8000/static/loading.svg">
+                <input id="submit" type="submit" class="btn" value="Submit" style="background-color: #FA627B; color: white;">
+                <div>
+                    <div class="loader ml-auto mr-auto"></div>
+                </div> 
             </div>        
         </form>
     </div>
 </body>
 <script>
-    $("#loading").hide()
+    $(".loader").hide()
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -82,7 +98,7 @@
             return false;
         }
         $("#submit").hide()
-        $("#loading").show()
+        $(".loader").show()
     }
 </script>
 </html>

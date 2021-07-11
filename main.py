@@ -5,6 +5,7 @@ from fastapi.templating import Jinja2Templates
 import predict
 import shutil
 import uvicorn
+import math
 
 from fastapi.staticfiles import StaticFiles
 
@@ -31,13 +32,21 @@ async def root(request: Request, my_file: UploadFile = File(...)):
             shutil.copyfileobj(my_file.file, buffer)
         data = predict.predict(my_file)
         val = data['values']
+        if(data['health_condition']=='covid'):
+            accuracy=math.ceil(val['covid']*100)
+        elif(data['health_condition']=='normal'):
+            accuracy=math.ceil(val['normal']*100)
+        else:
+            accuracy=math.ceil(val['pneumonia']*100)
     else:
         data=''
         val=''
+        accuracy=''
     return templates.TemplateResponse("result.html",{
                                                     "request": request,
                                                     "data": data,
                                                     "val":val,
+                                                    "accuracy":accuracy,
                                                     })
 
 if __name__ == "__main__":

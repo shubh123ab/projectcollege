@@ -4,39 +4,79 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dekh Lo Isko</title>
+    <title>COVID Prediction-Result</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
-<body>
-    <div class="text-center">
+<body>    
+    <nav class="navbar navbar-expand-lg" style="background-color: #6C63FE; color: white;">
+        <a class="navbar-brand text-white" href="http://localhost:8000/">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <!--<li class="nav-item active">
+                    <a class="nav-link text-white" href="http://localhost:8000/">Home <span class="sr-only">(current)</span></a>
+                </li>-->
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8000/about">About</a>
+                </li>-->            
+            </ul>
+            <!--<form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0 bg-dark" type="submit">Search</button>
+            </form>-->
+        </div>
+    </nav>
+    <div class="text-center pt-4">
         <h2>Report</h2> 
-        <div>Prediction Probablity</div>   
+        <div>Prediction Accuracy</div>   
         <br>
-        <div>
-            <img width="150" height="200" src="http://localhost:8000/static/demo.jpg">
-        </div>    
-        <br>
-        <div>
-            <table class="ml-auto mr-auto table table-striped w-50">
-                <tr>
-                    <th>Covid</th>
-                    <th>Pneumonia</th>
-                    <th>Normal</th>
-                </tr>            
-                <tr>
-                    <td>{{'%0.2f'| format(val.covid|float)}}</td>
-                    <td>{{'%0.2f'| format(val.pneumonia|float)}}</td>
-                    <td>{{'%0.2f'| format(val.normal|float)}}</td>
-                </tr>
-            </table>
-        </div>
-        <div>Health condition: <b>{{data.health_condition}}</b></div>
-        <br>
-        <br>
-        <div>
-            <a href="http://localhost:8000/"><input type="button" class="btn btn-success" value="Retry ↺"></a>
-        </div>
+        <div class="row p-3">
+            <div class="col-sm-4">
+                <div>
+                    <img class="border border-warning" width="70%" height="70%" src="http://localhost:8000/static/demo.jpg">
+                </div>
+            </div>
+            <div class="col-sm-8">
+                <div>
+                    <table class="table table-striped">
+                        <tr style="background-color: #EB478B;">
+                            <th>Covid</th>
+                            <th>Pneumonia</th>
+                            <th>Normal</th>
+                        </tr>            
+                        <tr style="background-color: #D9AFC9;">
+                            <td>{{'%0.2f'| format(val.covid|float)}}</td>
+                            <td>{{'%0.2f'| format(val.pneumonia|float)}}</td>
+                            <td>{{'%0.2f'| format(val.normal|float)}}</td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <p
+                        {% if data.health_condition == 'covid' %}             
+                        class="alert alert-danger"
+                        {% elif data.health_condition == 'normal' %}
+                        class="alert alert-success"
+                        {% else %}
+                        class="alert alert-info"
+                        {% endif %}
+                        >Health condition: <b>{{data.health_condition}}</b><br>
+                        Accuracy: <b>{{accuracy}} %</b>                
+                    </p>
+                </div>
+                <div>
+                    <p><a href="https://www.mohfw.gov.in/" target="_blank"><input type="button" class="alert alert-success btn" value="🔗 Official Resources"></a></p>            
+                </div>
+                <div>
+                    <a href="http://localhost:8000/"><input type="button" class="btn btn-success" value="Retry ↺"></a>
+                </div>
+            </div>
+        </div>            
+        
     </div>    
 </body>
 </html>
